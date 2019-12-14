@@ -1,0 +1,8 @@
+numpy
+cython
+Pillow
+matplotlib
+opencv-pytho
+npycocotools
+Pytorch>=1.0.1
+TorchVision

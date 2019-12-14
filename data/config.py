@@ -128,6 +128,20 @@ dataset_base = Config({
     'label_map': None
 })
 
+rust_generated_dataset = dataset_base.copy({
+    'name': 'RUST_GENERATED',
+    
+    'train_images': 'C:/Users/Fredrik/Desktop/yolact/data/composition_dataset_2/train/images/',
+    'train_info': 'C:/Users/Fredrik/Desktop/yolact/data/composition_dataset_2/train/annotations/annotations.json',
+
+    'valid_images': 'C:/Users/Fredrik/Desktop/yolact/data/composition_dataset_2/val/images/',
+    'valid_info': 'C:/Users/Fredrik/Desktop/yolact/data/composition_dataset_2/val/annotations/annotations.json',
+
+    'has_gt': True,
+
+    'class_names': ('rust',)
+})
+
 coco2014_dataset = dataset_base.copy({
     'name': 'COCO 2014',
     
@@ -140,8 +154,8 @@ coco2014_dataset = dataset_base.copy({
 coco2017_dataset = dataset_base.copy({
     'name': 'COCO 2017',
     
-    'train_info': './data/coco/annotations/instances_train2017.json',
-    'valid_info': './data/coco/annotations/instances_val2017.json',
+    'train_info': '../data/coco/annotations/instances_train2017.json',
+    'valid_info': '../data/coco/annotations/instances_val2017.json',
 
     'label_map': COCO_LABEL_MAP
 })
@@ -149,7 +163,7 @@ coco2017_dataset = dataset_base.copy({
 coco2017_testdev_dataset = dataset_base.copy({
     'name': 'COCO 2017 Test-Dev',
 
-    'valid_info': './data/coco/annotations/image_info_test-dev2017.json',
+    'valid_info': "C:/Users/Fredrik/Desktop/yolact/data/coco/annotations",
     'has_gt': False,
 
     'label_map': COCO_LABEL_MAP
@@ -581,8 +595,8 @@ yolact_base_config = coco_base_config.copy({
     'name': 'yolact_base',
 
     # Dataset stuff
-    'dataset': coco2017_dataset,
-    'num_classes': len(coco2017_dataset.class_names) + 1,
+    'dataset': rust_generated_dataset,
+    'num_classes': 1 + 1,
 
     # Image Size
     'max_size': 550,
@@ -616,6 +630,7 @@ yolact_base_config = coco_base_config.copy({
     'mask_proto_normalize_emulate_roi_pooling': True,
 
     # Other stuff
+    'freeze_bn': True,
     'share_prediction_module': True,
     'extra_head_net': [(256, 3, {'padding': 1})],
 

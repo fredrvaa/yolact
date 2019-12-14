@@ -124,7 +124,7 @@ class COCODetection(data.Dataset):
         # The split here is to have compatibility with both COCO2014 and 2017 annotations.
         # In 2014, images have the pattern COCO_{train/val}2014_%012d.jpg, while in 2017 it's %012d.jpg.
         # Our script downloads the images as %012d.jpg so convert accordingly.
-        file_name = self.coco.loadImgs(img_id)[0]['file_name']
+        file_name = self.coco.loadImgs(img_id)[0]['filename']
         
         if file_name.startswith('COCO'):
             file_name = file_name.split('_')[-1]
